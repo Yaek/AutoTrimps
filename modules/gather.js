@@ -258,4 +258,5 @@ function RmanualLabor2() {
 			}
 		}
     }
+    return;
 }
