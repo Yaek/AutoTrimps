@@ -58,63 +58,63 @@ function manualLabor2() {
             setGather('science');
         }
     }
-    else if (trapTrimpsOK){
-        //combined to optimize code.
-        if (game.buildings.Trap.owned < 5 && canAffordBuilding('Trap')) {
-            safeBuyBuilding('Trap');
-            setGather('buildings');
-        }
-    }
     else {
-        var manualResourceList = {
-            'food': 'Farmer',
-            'wood': 'Lumberjack',
-            'metal': 'Miner',
-        };
-        var lowestResource = 'food';
-        var lowestResourceRate = -1;
-        var haveWorkers = true;
-        for (var resource in manualResourceList) {
-            var job = manualResourceList[resource];
-            var currentRate = game.jobs[job].owned * game.jobs[job].modifier;
-            // debug('Current rate for ' + resource + ' is ' + currentRate + ' is hidden? ' + (document.getElementById(resource).style.visibility == 'hidden'));
-            if (document.getElementById(resource).style.visibility != 'hidden') {
-                //find the lowest resource rate
-                if (currentRate === 0) {
-                    currentRate = game.resources[resource].owned;
-                    // debug('Current rate for ' + resource + ' is ' + currentRate + ' lowest ' + lowestResource + lowestResourceRate);
-                    if ((haveWorkers) || (currentRate < lowestResourceRate)) {
-                        // debug('New Lowest1 ' + resource + ' is ' + currentRate + ' lowest ' + lowestResource + lowestResourceRate+ ' haveworkers ' +haveWorkers);
-                        haveWorkers = false;
-                        lowestResource = resource;
-                        lowestResourceRate = currentRate;
-                    }
-                }
-                if ((currentRate < lowestResourceRate || lowestResourceRate == -1) && haveWorkers) {
-                    // debug('New Lowest2 ' + resource + ' is ' + currentRate + ' lowest ' + lowestResource + lowestResourceRate);
-                    lowestResource = resource;
-                    lowestResourceRate = currentRate;
-                }
-            }
-         }
-        if (game.global.playerGathering != lowestResource && !haveWorkers && !breedFire) {
-            if (hasTurkimp)
-                setGather('metal');
-            else
-                setGather(lowestResource);
-        } else if (getPageSetting('ManualGather2') != 2 && document.getElementById('scienceCollectBtn').style.display != 'none' && document.getElementById('science').style.visibility != 'hidden') {
-            if (game.resources.science.owned < getPsString('science', true) * MODULES["gather"].minScienceSeconds && game.global.turkimpTimer < 1 && haveWorkers)
-                setGather('science');
-            else if (hasTurkimp)
-                setGather('metal');
-            else
-                setGather(lowestResource);
-        }
-        //Build more traps if we have TrapTrimps on, and we own less than (100) traps.
-        else if(trapTrimpsOK && game.global.trapBuildToggled == true && lowOnTraps)
-            setGather('buildings');
-        else
-            setGather(lowestResource);
+	if (trapTrimpsOK){
+		if (game.buildings.Trap.owned < 5 && canAffordBuilding('Trap')) {
+		    safeBuyBuilding('Trap');
+		    setGather('buildings');
+		}
+    	}
+        else {
+	var manualResourceList = {
+	    'food': 'Farmer',
+	    'wood': 'Lumberjack',
+	    'metal': 'Miner',
+	};
+	var lowestResource = 'food';
+	var lowestResourceRate = -1;
+	var haveWorkers = true;
+	for (var resource in manualResourceList) {
+	    var job = manualResourceList[resource];
+	    var currentRate = game.jobs[job].owned * game.jobs[job].modifier;
+	    // debug('Current rate for ' + resource + ' is ' + currentRate + ' is hidden? ' + (document.getElementById(resource).style.visibility == 'hidden'));
+	    if (document.getElementById(resource).style.visibility != 'hidden') {
+		//find the lowest resource rate
+		if (currentRate === 0) {
+		    currentRate = game.resources[resource].owned;
+		    // debug('Current rate for ' + resource + ' is ' + currentRate + ' lowest ' + lowestResource + lowestResourceRate);
+		    if ((haveWorkers) || (currentRate < lowestResourceRate)) {
+			// debug('New Lowest1 ' + resource + ' is ' + currentRate + ' lowest ' + lowestResource + lowestResourceRate+ ' haveworkers ' +haveWorkers);
+			haveWorkers = false;
+			lowestResource = resource;
+			lowestResourceRate = currentRate;
+		    }
+		}
+		if ((currentRate < lowestResourceRate || lowestResourceRate == -1) && haveWorkers) {
+		    // debug('New Lowest2 ' + resource + ' is ' + currentRate + ' lowest ' + lowestResource + lowestResourceRate);
+		    lowestResource = resource;
+		    lowestResourceRate = currentRate;
+		}
+	    }
+	 }
+	if (game.global.playerGathering != lowestResource && !haveWorkers && !breedFire) {
+	    if (hasTurkimp)
+		setGather('metal');
+	    else
+		setGather(lowestResource);
+	} else if (getPageSetting('ManualGather2') != 2 && document.getElementById('scienceCollectBtn').style.display != 'none' && document.getElementById('science').style.visibility != 'hidden') {
+	    if (game.resources.science.owned < getPsString('science', true) * MODULES["gather"].minScienceSeconds && game.global.turkimpTimer < 1 && haveWorkers)
+		setGather('science');
+	    else if (hasTurkimp)
+		setGather('metal');
+	    else
+		setGather(lowestResource);
+	}
+	//Build more traps if we have TrapTrimps on, and we own less than (100) traps.
+	else if(trapTrimpsOK && game.global.trapBuildToggled == true && lowOnTraps)
+	    setGather('buildings');
+	else
+	    setGather(lowestResource);
     }
 }
 
@@ -204,54 +204,55 @@ function RmanualLabor2() {
                  setGather('science');
         }
     }
-    else if (trapTrimpsOK){
-        if (game.buildings.Trap.owned < 5 && canAffordBuilding('Trap')) {
+    else {
+        if (trapTrimpsOK && game.buildings.Trap.owned < 5 && canAffordBuilding('Trap')) {
             safeBuyBuilding('Trap');
             setGather('buildings');
         }
-    else {
-        var manualResourceList = {
-            'food': 'Farmer',
-            'wood': 'Lumberjack',
-            'metal': 'Miner',
-        };
-        var lowestResource = 'food';
-        var lowestResourceRate = -1;
-        var haveWorkers = true;
-        for (var resource in manualResourceList) {
-             var job = manualResourceList[resource];
-             var currentRate = game.jobs[job].owned * game.jobs[job].modifier;
-             if (document.getElementById(resource).style.visibility != 'hidden') {
-                 if (currentRate === 0) {
-                     currentRate = game.resources[resource].owned;
-                     if ((haveWorkers) || (currentRate < lowestResourceRate)) {
-                         haveWorkers = false;
-                         lowestResource = resource;
-                         lowestResourceRate = currentRate;
-                     }
-                }
-                if ((currentRate < lowestResourceRate || lowestResourceRate == -1) && haveWorkers) {
-                    lowestResource = resource;
-                    lowestResourceRate = currentRate;
-                }
-            }
-         }
-        if (game.global.challengeActive == "Transmute" && game.global.playerGathering != lowestResource && !haveWorkers && !breedFire) {
-            if (hasTurkimp)
-                setGather('metal');
-            else
-                setGather(lowestResource);
-        } else if (getPageSetting('RManualGather2') != 2 && document.getElementById('scienceCollectBtn').style.display != 'none' && document.getElementById('science').style.visibility != 'hidden') {
-            if (game.resources.science.owned < getPsString('science', true) * MODULES["gather"].minScienceSeconds && game.global.turkimpTimer < 1 && haveWorkers)
-                setGather('science');
-            else if (game.global.challengeActive == "Transmute" && hasTurkimp)
-                     setGather('metal');
-            else
-                setGather(lowestResource);
-        }
-        else if(trapTrimpsOK && game.global.trapBuildToggled == true && lowOnTraps)
-            setGather('buildings');
-        else
-            setGather(lowestResource);
+	else {
+		var manualResourceList = {
+		    'food': 'Farmer',
+		    'wood': 'Lumberjack',
+		    'metal': 'Miner',
+		};
+		var lowestResource = 'food';
+		var lowestResourceRate = -1;
+		var haveWorkers = true;
+		for (var resource in manualResourceList) {
+		     var job = manualResourceList[resource];
+		     var currentRate = game.jobs[job].owned * game.jobs[job].modifier;
+		     if (document.getElementById(resource).style.visibility != 'hidden') {
+			 if (currentRate === 0) {
+			     currentRate = game.resources[resource].owned;
+			     if ((haveWorkers) || (currentRate < lowestResourceRate)) {
+				 haveWorkers = false;
+				 lowestResource = resource;
+				 lowestResourceRate = currentRate;
+			     }
+			}
+			if ((currentRate < lowestResourceRate || lowestResourceRate == -1) && haveWorkers) {
+			    lowestResource = resource;
+			    lowestResourceRate = currentRate;
+			}
+		    }
+		 }
+		if (game.global.challengeActive == "Transmute" && game.global.playerGathering != lowestResource && !haveWorkers && !breedFire) {
+		    if (hasTurkimp)
+			setGather('metal');
+		    else
+			setGather(lowestResource);
+		} else if (getPageSetting('RManualGather2') != 2 && document.getElementById('scienceCollectBtn').style.display != 'none' && document.getElementById('science').style.visibility != 'hidden') {
+		    if (game.resources.science.owned < getPsString('science', true) * MODULES["gather"].minScienceSeconds && game.global.turkimpTimer < 1 && haveWorkers)
+			setGather('science');
+		    else if (game.global.challengeActive == "Transmute" && hasTurkimp)
+			     setGather('metal');
+		    else
+			setGather(lowestResource);
+		}
+		else if(trapTrimpsOK && game.global.trapBuildToggled == true && lowOnTraps)
+		    setGather('buildings');
+		else
+		    setGather(lowestResource);
+	}
     }
 }
