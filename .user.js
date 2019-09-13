@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         AutoTrimps-Zek
-// @version      1.0-Zek
+// @name         AutoTrimps-Zek - YAEK FORK
+// @version      1.0-Zek - YAEK FORK
 // @namespace    https://Yaek.github.io/AutoTrimps
 // @updateURL    https://Yaek.github.io/AutoTrimps/.user.js
 // @description  Automate all the trimps!
