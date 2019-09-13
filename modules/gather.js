@@ -133,7 +133,7 @@ function RmanualLabor2() {
     var lowOnTraps = game.buildings.Trap.owned < 5;
     var trapTrimpsOK = getPageSetting('RTrapTrimps');
     var hasTurkimp = game.talents.turkimp2.purchased || game.global.turkimpTimer > 0;
-    var needToTrap = (game.resources.trimps.max - game.resources.trimps.owned >= game.resources.trimps.max * 0.05) || (game.resources.trimps.getCurrentSend() > game.resources.trimps.owned - game.resources.trimps.employed);
+    var needToTrap = (game.resources.trimps.max - game.resources.trimps.owned >= game.resources.trimps.max * 0.47) || game.portal.Bait.level + 1 > (game.resources.trimps.potency * (game.resources.trimps.owned - game.resources.trimps.employed) * pow(1.1,game.upgrades.Potency.done)*pow(1.01,game.buildings.Nursery.owned) * (1+game.portal.Phermones.level/10))/10;
     var fresh = false;
     //ULTRA FRESH
     if (!game.upgrades.Battle.done) {
