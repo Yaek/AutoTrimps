@@ -59,11 +59,9 @@ function manualLabor2() {
         }
     }
     else {
-	if (trapTrimpsOK){
-		if (game.buildings.Trap.owned < 5 && canAffordBuilding('Trap')) {
+	if (trapTrimpsOK && game.buildings.Trap.owned < 5 && canAffordBuilding('Trap')) {
 		    safeBuyBuilding('Trap');
 		    setGather('buildings');
-		}
     	}
         else {
 	var manualResourceList = {
