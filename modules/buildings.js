@@ -165,11 +165,11 @@ function buyBuildings() {
     var oldBuy = preBuy2();
     var hidebuild = (getPageSetting('BuyBuildingsNew')===0 && getPageSetting('hidebuildings')==true);
     game.global.buyAmt = 1;
-    if (!hidebuild) {
+    if (TRUE) {
     buyFoodEfficientHousing();
     buyGemEfficientHousing();
   	}
-    if (!hidebuild && getPageSetting('MaxWormhole') > 0 && game.buildings.Wormhole.owned < getPageSetting('MaxWormhole') && !game.buildings.Wormhole.locked) {
+    if (getPageSetting('MaxWormhole') > 0 && game.buildings.Wormhole.owned < getPageSetting('MaxWormhole') && !game.buildings.Wormhole.locked) {
         safeBuyBuilding('Wormhole');
     }
 
@@ -198,7 +198,7 @@ function buyBuildings() {
        	    needGymystic = false;
     }
     //Tributes:
-    if (!game.buildings.Tribute.locked && !hidebuild &&(getPageSetting('MaxTribute') > game.buildings.Tribute.owned || getPageSetting('MaxTribute') == -1)) {
+    if (!game.buildings.Tribute.locked && (getPageSetting('MaxTribute') > game.buildings.Tribute.owned || getPageSetting('MaxTribute') == -1)) {
         safeBuyBuilding('Tribute');
     }
     //Nurseries
